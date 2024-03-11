@@ -1,0 +1,50 @@
+<div class="container">
+
+  <div class="row  mb-3">
+    <div class="col-2">
+      <div class="form-floating">
+        <select class="form-select" id="floatingSelect" [(ngModel)]="filter.parameter">
+          <option [value]="2">Title</option>
+          <option [value]="1">ISBN</option>
+          <option [value]="0">Author</option>
+        </select>
+        <label for="floatingSelect">Search Parameter</label>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="form-floating">
+        <input type="text" class="form-control form-control-sm" [(ngModel)]="filter.value">
+        <label for="floatingInput">Search</label>
+      </div>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Book Title</th>
+            <th scope="col">Authors</th>
+            <th scope="col">Type</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Category</th>
+            <th scope="col">Available Copies</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>{{book.title}}</td>
+            <td>{{getAuthors(book.authors)}}</td>
+            <td>{{book.type}}</td>
+            <td>{{book.isbn}}</td>
+            <td>{{getCategories(book.categories)}}</td>
+            <td>{{getAvailableCopies(book.totalCopies, book.copiesInUse)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
